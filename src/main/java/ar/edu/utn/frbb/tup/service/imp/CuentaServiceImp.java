@@ -67,9 +67,6 @@ public class CuentaServiceImp implements CuentaService {
     @Override
     public List<Cuenta> buscarCuentas() throws CuentaNoExisteException{
         List<Cuenta> cuentas = cuentaDao.findAll();
-        if (cuentas.isEmpty()) {
-            throw new CuentaNoExisteException("No se encontraron cuentas.");
-        }
         return cuentas;
     }
 
@@ -94,7 +91,7 @@ public class CuentaServiceImp implements CuentaService {
     public Cuenta desactivarCuenta(long id) throws CuentaNoExisteException {
         Cuenta cuenta = obtenerCuentaExistente(id);
         cuenta.setEstado(false);
-        cuentaDao.update(cuenta);
+        cuentaDao.updateEstado(cuenta);
         return cuenta;
     }
 
