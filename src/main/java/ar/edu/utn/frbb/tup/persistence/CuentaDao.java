@@ -11,5 +11,6 @@ public interface CuentaDao {
     void save(Cuenta cuenta);
     List<Cuenta> buscarCuentasByCliente(long dni);
     Cuenta update(Cuenta cuenta);
+    Cuenta updateEstado(Cuenta cuenta) throws CuentaNoExisteException;
 
 }
