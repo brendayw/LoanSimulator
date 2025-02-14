@@ -70,4 +70,17 @@ public class CuentaDaoImp extends AbstractBaseDao implements CuentaDao {
         }
         return actualizado;
     }
+
+        public Cuenta updateEstado(Cuenta cuenta) throws CuentaNoExisteException {
+        CuentaEntity cuentaEntity = (CuentaEntity) getInMemoryDatabase().get(cuenta.getNumeroCuenta());
+        if(cuentaEntity != null) {
+            if (cuenta.isEstado() != cuentaEntity.isEstado()) {
+                cuentaEntity.setEstado(cuenta.isEstado());
+            }
+            save(cuentaEntity.toCuenta());
+        } else {
+            throw new CuentaNoExisteException("Cuenta no encontrado.");
+        }
+        return cuenta;
+    }
 }
