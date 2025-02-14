@@ -60,7 +60,7 @@ public class ClienteEntity extends BaseEntity {
         cliente.setFechaAlta(this.fechaAlta);
         cliente.setFechaNacimiento(this.fechaNacimiento);
         cliente.setBanco(this.banco);
-        cliente.setActivo(true);
+        cliente.setActivo(this.activo);
         return cliente;
     }
 
@@ -80,4 +80,14 @@ public class ClienteEntity extends BaseEntity {
     public void setPrestamos(Set<Long> prestamos) {
         this.prestamos = prestamos;
     }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    
 }
