@@ -60,9 +60,6 @@ public class PrestamoServiceImp implements PrestamoService {
     @Override
     public List<Prestamo> buscarPrestamos() throws PrestamoNoExisteException {
         List<Prestamo> prestamos = prestamoDao.findAll();
-        if (prestamos.isEmpty()) {
-            throw new PrestamoNoExisteException("No se encontraron préstamos.");
-        }
         return prestamos;
     }
 
