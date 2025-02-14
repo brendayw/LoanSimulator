@@ -50,9 +50,6 @@ public class ClienteServiceImp implements ClienteService {
     //buscar todos los clientes
     public List<Cliente> buscarClientes() throws ClientNoExisteException {
         List<Cliente> clientes = clienteDao.findAll();
-        if (clientes.isEmpty()) {
-            throw new ClientNoExisteException("No se encontraron clientes.");
-        }
         return clientes;
     }
 
@@ -63,7 +60,7 @@ public class ClienteServiceImp implements ClienteService {
             throw new ClientNoExisteException("El cliente no existe");
         }
         cliente.setActivo(false);
-        clienteDao.save(cliente);
+        clienteDao.update(cliente);
         return cliente;
     }
 
