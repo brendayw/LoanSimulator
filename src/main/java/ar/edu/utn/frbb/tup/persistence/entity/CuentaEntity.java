@@ -34,7 +34,7 @@ public class CuentaEntity extends BaseEntity {
         cuenta.setTipoMoneda(TipoMoneda.fromString(this.tipoMoneda));
         cuenta.setBalance(this.balance);
         cuenta.setFechaCreacion(this.fechaCreacion);
-        cuenta.setEstado(true);
+        cuenta.setEstado(this.isEstado());
         return cuenta;
     }
 
