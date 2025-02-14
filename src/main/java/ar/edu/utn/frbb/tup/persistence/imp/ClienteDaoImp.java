@@ -83,18 +83,15 @@ public class ClienteDaoImp extends AbstractBaseDao implements ClienteDao {
     }
 
     public Cliente update(Cliente cliente) throws ClientNoExisteException {
-        Cliente actualizado = find(cliente.getDni(), true);
-        if(actualizado  != null) {
-            if (cliente.getEmail() != null) {
-                actualizado.setEmail(cliente.getEmail());
+        ClienteEntity clienteEntity = (ClienteEntity) getInMemoryDatabase().get(cliente.getDni());
+        if(clienteEntity != null) {
+            if (cliente.isActivo() != clienteEntity.isActivo()) {
+                clienteEntity.setActivo(cliente.isActivo());
             }
-            if (cliente.getTelefono() != null) {
-                actualizado.setTelefono(cliente.getTelefono());
-            }
-            System.out.println("Datos actualizados con exito.");
+            save(clienteEntity.toCliente());
         } else {
             throw new ClientNoExisteException("Cliente no encontrado.");
         }
-        return actualizado;
+        return cliente;
     }
 }
